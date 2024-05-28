@@ -144,7 +144,6 @@ def main (id):
                 print("error int selector")
                 return "error_int"
 
-            print("pass to selector")
             if selector == '1' or selector == '2':
                 senha = case1(id_input)
             elif selector == '3' or selector == '4':

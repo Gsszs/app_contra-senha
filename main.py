@@ -7,18 +7,26 @@ def main (page: ft.Page):
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
     def generate_password(e):
-        id = input_id.value
-        password = f"{cd.main(id)}\n"
-        if (len(password) < 10):
-            input_id.error_text = "ERROR: Id is not validated."
+        if (len(input_id.value) == 11):
+            if (input_id.value[-1].isdigit()):
+                print(f"Input id -1 = {input_id.value[-1]}")
+                id = input_id.value
+                password = f"{cd.main(id)}\n"
+                password_generated.value = f"PASSWORD: {password}"
+                password_generated.color = "#ffffff"
+                input_id.value = ""
+                input_id.error_text = ""
+            else:
+                input_id.error_text = "ERROR: ID is incorrect."
+        elif(len(input_id.value) < 11 or len(input_id.value) > 11):
+            input_id.error_text = "ERROR: Write correct ID (11 caracters)."
         else:
-            input_id.error_text = ""
-            input_id.value = ""
-            password_generated.value = f"PASSWORD: {password}"
-            password_generated.color = "#ffffff"
+            input_id.error_text = "ERROR: Generate ID error."
+        
+
         page.update()
 
-    generate_button = ft.ElevatedButton("GENERATE PASSWORD", on_click=generate_password)
+    generate_button = ft.ElevatedButton("GENERATE PASSWORD", on_click=generate_password, color=ft.colors.GREEN_400)
     password_generated = ft.Text("PASSWORD: None", size=30, weight=ft.FontWeight.W_800, color="#3D3D3D")
     input_id = ft.TextField(label="Write Device ID here", value="")
 
