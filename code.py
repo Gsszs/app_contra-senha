@@ -1,9 +1,6 @@
 import os
 import time as t
 
-def clear_terminal():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
 def solicitar_id(id):
     entrada = id.upper()
     if (len(entrada) < 11 or len(entrada) > 11):
@@ -60,7 +57,7 @@ def case1(id_input):
         else:
             contra_senha.append(char)
 
-    clear_terminal()
+    
     print("Contra Senha:", ''.join(contra_senha))
     return ''.join(contra_senha)
 
@@ -74,7 +71,7 @@ def case2(id_input):
         else:
             contra_senha.append(char)
 
-    clear_terminal()
+    
     print("Contra Senha:", ''.join(contra_senha))
     return ''.join(contra_senha)
 
@@ -91,7 +88,7 @@ def case3(id_input):
             new_letter = chr(ord('Z') - (ord(char) - ord('A')))
             contra_senha.append(new_letter)
 
-    clear_terminal()
+    
     print("Contra Senha:", ''.join(contra_senha))
     return ''.join(contra_senha)
 
@@ -107,7 +104,7 @@ def case4(passwordId: str) -> str:
             new_number = digit * 2 if digit <= 4 else digit * 4
             final_password.append(troca_numero(new_number % 10))
 
-    clear_terminal()
+    
     print("Contra senha:", ''.join(final_password))
     return ''.join(final_password)
 
@@ -124,25 +121,30 @@ def case5(id_input):
             new_letter = chr(ord('Z') - (ord(char) - ord('A')))
             contra_senha.append(new_letter)
 
-    clear_terminal()
+    
     print("Contra Senha:", ''.join(contra_senha))
     return ''.join(contra_senha)
 
 
 def main (id):
         id_input = solicitar_id(id)
+        print(f"Id input: {id_input}")
         if (len(id_input) < 2):
+            print("error")
             return "error"
         else:
+            print("len id_input > 2")
             selector = id_input[-1]
             id_input = id_input[:-1]
             
             try:
+                print("try int selector")
                 int(selector)
             except:
+                print("error int selector")
                 return "error_int"
-                
 
+            print("pass to selector")
             if selector == '1' or selector == '2':
                 senha = case1(id_input)
             elif selector == '3' or selector == '4':
