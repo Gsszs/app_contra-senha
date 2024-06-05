@@ -1,5 +1,5 @@
 import flet as ft
-import code as cd
+import password as cd
 
 def main (page: ft.Page):
     page.theme_mode = ft.ThemeMode.DARK
@@ -12,9 +12,8 @@ def main (page: ft.Page):
                 print(f"Input id -1 = {input_id.value[-1]}")
                 id = input_id.value
                 password = f"{cd.main(id)}\n"
-                password_generated.value = f"PASSWORD: {password}"
+                password_generated.value = f"Password: \n{password}"
                 password_generated.color = "#ffffff"
-                input_id.value = ""
                 input_id.error_text = ""
             else:
                 input_id.error_text = "ERROR: ID is incorrect."
@@ -23,19 +22,13 @@ def main (page: ft.Page):
         else:
             input_id.error_text = "ERROR: Generate ID error."
         
-
         page.update()
 
     generate_button = ft.ElevatedButton("GENERATE PASSWORD", on_click=generate_password, color=ft.colors.GREEN_400)
-    password_generated = ft.Text("PASSWORD: None", size=30, weight=ft.FontWeight.W_800, color="#3D3D3D")
+    password_generated = ft.Text("\nPassword: ", size=28, weight=ft.FontWeight.W_400, color="#3D3D3D")
     input_id = ft.TextField(label="Write Device ID here", value="")
 
     page.add(
-        ft.Row([
-            password_generated
-        ],
-        alignment=ft.MainAxisAlignment.CENTER
-        ),
         ft.Row([
             input_id,
         ],
@@ -43,6 +36,11 @@ def main (page: ft.Page):
         ),
         ft.Row([
             generate_button,
+        ],
+        alignment=ft.MainAxisAlignment.CENTER
+        ),
+        ft.Row([
+            password_generated,
         ],
         alignment=ft.MainAxisAlignment.CENTER
         )

@@ -1,5 +1,12 @@
 import os
-import time as t
+import sys
+
+if __name__ == "__main__":
+    script_dir = os.path.dirname(__file__)
+    main_path = os.path.join(script_dir, "main.py")
+    
+    os.execv(sys.executable, ['python', main_path] + sys.argv[1:])
+
 
 def solicitar_id(id):
     entrada = id.upper()
@@ -8,27 +15,16 @@ def solicitar_id(id):
     else:
         return entrada
 
-def troca_letra(l: str) -> int:
-    mapa = {
-        'A': 6,
-        'B': 3,
-        'C': 0,
-        'D': 9,
-        'E': 1,
-        'F': 2
-    }
-    return mapa.get(l.upper(), '5')
-
 def troca_simbolo(s: str) -> str:
     mapa = {
-        'A': '(',
-        'B': '&',
-        'C': '@',
-        'D': '%',
-        'E': '$',
-        'F': '='
+        'A': '6',
+        'B': '3',
+        'C': '0',
+        'D': '9',
+        'E': '1',
+        'F': '2'
     }
-    return mapa.get(s, '?')
+    return mapa.get(s, '5')
 
 def troca_numero(n: int) -> chr:
     mapa = {
@@ -156,3 +152,7 @@ def main (id):
                 senha = case5(id_input)
 
             return senha
+        
+if __name__ == "__main__":
+    id = input("Enter the ID: ")
+    print("Generated Password:", main(id))
